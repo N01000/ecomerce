@@ -1,4 +1,4 @@
-
+[
   {
     "id": 1,
     "nombre": "Remera básica blanca",
@@ -17,8 +17,7 @@
     "descripcion": "Jean azul clásico, corte recto.",
     "stock": 15
   },
-  
- {
+  {
     "id": 3,
     "nombre": "Pantalón jean negro",
     "precio": 22000,
@@ -35,4 +34,5 @@
     "imagen": "img/remeras/remera-negra.jpg",
     "descripcion": "Remera negra de algodon, corte clasico",
     "stock": 8
-  },
+  }
+]
