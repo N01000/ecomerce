@@ -37,14 +37,23 @@ function guardarCarritoEnLS() {
 }
 
 function agregarAlCarrito(idProducto) {
-  // Busco el producto en el array productos
   const prod = productos.find((p) => p.id === idProducto);
   if (!prod) return;
 
-  // ¿Ya está en el carrito?
+  // si no hay stock, salimos
+  if (prod.stock <= 0) {
+    alert("No hay stock disponible de este producto.");
+    return;
+  }
+
   const item = carrito.find((item) => item.id === idProducto);
 
   if (item) {
+    // si ya tengo en carrito la misma cantidad que el stock, no dejo sumar más
+    if (item.cantidad >= prod.stock) {
+      alert("Producto sin stock.");
+      return;
+    }
     item.cantidad += 1;
   } else {
     carrito.push({
@@ -52,6 +61,7 @@ function agregarAlCarrito(idProducto) {
       nombre: prod.nombre,
       precio: prod.precio,
       imagen: prod.imagen,
+      stock: prod.stock,   // guardo stock también en el carrito
       cantidad: 1,
     });
   }
@@ -90,13 +100,22 @@ function renderizarProductos(lista) {
     const card = document.createElement("article");
     card.classList.add("card-producto");
 
+    const sinStock = prod.stock <= 0;
+
     card.innerHTML = `
       <img src="${prod.imagen}" alt="${prod.nombre}">
       <div class="card-body">
         <h3>${prod.nombre}</h3>
         <p class="card-price">$${prod.precio.toLocaleString("es-AR")}</p>
-        <button class="btn-agregar" data-id="${prod.id}">Agregar al carrito</button>
-        <button class="btn-detalle" data-id="${prod.id}">Ver detalle</button>
+        <p class="card-stock">
+          ${sinStock ? "Sin stock" : "Stock: " + prod.stock}
+        </p>
+        <button class="btn-agregar" data-id="${prod.id}" ${sinStock ? "disabled" : ""}>
+          ${sinStock ? "No disponible" : "Agregar al carrito"}
+        </button>
+        <button class="btn-detalle" data-id="${prod.id}">
+          Ver detalle
+        </button>
       </div>
     `;
 

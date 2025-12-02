@@ -79,6 +79,12 @@ cartItemsContainer.addEventListener("click", (e) => {
     const item = carrito.find((p) => p.id === id);
     if (!item) return;
 
+     // si ya está en el máximo de stock, no dejo sumar
+    if (item.stock && item.cantidad >= item.stock) {
+    alert("No podés agregar más, no hay stock disponible.");
+    return;
+  }
+
     item.cantidad += 1;
   }
 
