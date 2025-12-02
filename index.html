@@ -17,6 +17,20 @@
 
   <main>
     <!-- Después acá van filtros, búsqueda, etc. -->
+     <section id="filtros" class="filtros">
+  <select id="filtro-categoria">
+    <option value="todos">Todas las categorías</option>
+    <option value="remeras">Remeras</option>
+    <option value="pantalones">Pantalones</option>
+    <option value="zapatillas">Zapatillas</option>
+  </select>
+
+  <input
+    type="text"
+    id="busqueda"
+    placeholder="Buscar producto..."
+  />
+</section>
     <section id="productos-container" class="productos-container">
       <!-- Acá JS va a inyectar las tarjetas -->
     </section>
