@@ -48,6 +48,10 @@ async function cargarDetalleProducto() {
       </article>
     `;
 
+    let cantidad = 1;
+
+
+
     // 4) botón de agregar al carrito desde la vista detalle
     const btnAgregar = document.querySelector("#btn-agregar-detalle");
     btnAgregar.addEventListener("click", () =>
@@ -79,7 +83,26 @@ function agregarAlCarritoDesdeDetalle(producto) {
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito));
   alert("Producto agregado al carrito 🛒");
+
+    let cantidad = 1;
+
+  // botones de cantidad
+  document.querySelector("#btn-plus").addEventListener("click", () => {
+    if (cantidad < producto.stock) cantidad++;
+    actualizarCantidad();
+  });
+
+  document.querySelector("#btn-minus").addEventListener("click", () => {
+    if (cantidad > 1) cantidad--;
+    actualizarCantidad();
+  });
+
+  function actualizarCantidad() {
+    document.querySelector("#detalle-cantidad").textContent = cantidad;
 }
+}
+
+
 
 // ejecutar al cargar la página
 cargarDetalleProducto();
