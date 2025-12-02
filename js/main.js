@@ -108,11 +108,11 @@ contenedorProductos.addEventListener("click", (e) => {
   }
 
   // Botón "Ver detalle" (dejamos listo para después)
-  if (e.target.classList.contains("btn-detalle")) {
-    const id = Number(e.target.dataset.id);
-    console.log("Ver detalle de id:", id);
-    // Más adelante: redirigir a product.html?id=ID
-  }
+if (e.target.classList.contains("btn-detalle")) {
+  const id = Number(e.target.dataset.id);
+  // Redirigimos a la página de detalle con el id en la URL
+  window.location.href = `product.html?id=${id}`;
+}
 });
 
 // -------------------------
