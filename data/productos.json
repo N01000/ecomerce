@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Remera básica blanca",
+    "precio": 12000,
+    "categoria": "remeras",
+    "imagen": "img/remeras/remera-blanca.jpg",
+    "descripcion": "Remera de algodón clásica, ideal para uso diario.",
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "nombre": "Pantalón jean azul",
+    "precio": 28000,
+    "categoria": "pantalones",
+    "imagen": "img/pantalones/jean-azul.jpg",
+    "descripcion": "Jean azul clásico, corte recto.",
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "nombre": "Zapatillas urbanas negras",
+    "precio": 45000,
+    "categoria": "zapatillas",
+    "imagen": "img/zapatillas/zapatillas-negras.jpg",
+    "descripcion": "Zapatillas urbanas cómodas para todos los días.",
+    "stock": 10
+  }
+]
