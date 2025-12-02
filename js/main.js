@@ -1,4 +1,4 @@
-// -------------------------
+/// -------------------------
 // CONFIG Y VARIABLES
 // -------------------------
 
@@ -121,3 +121,4 @@ contenedorProductos.addEventListener("click", (e) => {
 
 cargarCarritoDesdeLS(); // primero traemos lo que ya había
 cargarProductos();      // y después cargamos los productos
+

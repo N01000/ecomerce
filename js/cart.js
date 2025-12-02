@@ -1,32 +1,111 @@
-// cart.js
+// -------------------------
+// REFERENCIAS AL DOM
+// -------------------------
+const cartItemsContainer = document.querySelector("#cart-items");
+const cartEmptyText = document.querySelector("#cart-empty");
+const cartTotalText = document.querySelector("#cart-total");
 
-let cart = [];
+// Carrito local (se sincroniza con localStorage)
+let carrito = [];
 
-// 1. Cargar carrito desde localStorage
-export function loadCart() {
-  const saved = localStorage.getItem('cart');
-  cart = saved ? JSON.parse(saved) : [];
-  return cart;
+// -------------------------
+// LOCALSTORAGE
+// -------------------------
+function cargarCarritoDesdeLS() {
+  const data = localStorage.getItem("carrito");
+  carrito = data ? JSON.parse(data) : [];
 }
 
-// 2. Guardar carrito en localStorage
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+function guardarCarritoEnLS() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// 3. Agregar producto al carrito
-export function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
+// -------------------------
+// LÓGICA DEL CARRITO
+// -------------------------
+function calcularTotal() {
+  return carrito.reduce(
+    (acc, item) => acc + item.precio * item.cantidad,
+    0
+  );
+}
 
-  if (existing) {
-    existing.cantidad += 1;
-  } else {
-    cart.push({
-      ...product,
-      cantidad: 1
-    });
+function renderCarrito() {
+  cartItemsContainer.innerHTML = "";
+
+  if (!carrito.length) {
+    cartEmptyText.style.display = "block";
+    cartTotalText.textContent = "Total: $0";
+    return;
   }
 
-  saveCart();
-  console.log('Carrito actualizado:', cart);
+  cartEmptyText.style.display = "none";
+
+  carrito.forEach((item) => {
+    const row = document.createElement("div");
+    row.classList.add("cart-row");
+
+    row.innerHTML = `
+      <img src="${item.imagen}" alt="${item.nombre}" class="cart-img">
+      <span class="cart-name">${item.nombre}</span>
+      <span class="cart-price">$${item.precio.toLocaleString("es-AR")}</span>
+      <div class="cart-qty">
+        <button class="btn-menos" data-id="${item.id}">-</button>
+        <span>${item.cantidad}</span>
+        <button class="btn-mas" data-id="${item.id}">+</button>
+      </div>
+      <span class="cart-subtotal">
+        $${(item.precio * item.cantidad).toLocaleString("es-AR")}
+      </span>
+      <button class="btn-eliminar" data-id="${item.id}">x</button>
+    `;
+
+    cartItemsContainer.appendChild(row);
+  });
+
+  const total = calcularTotal();
+  cartTotalText.textContent = `Total: $${total.toLocaleString("es-AR")}`;
 }
+
+// -------------------------
+// MANEJO DE BOTONES (+, -, x)
+// -------------------------
+cartItemsContainer.addEventListener("click", (e) => {
+  const id = Number(e.target.dataset.id);
+  if (!id) return;
+
+  // + cantidad
+  if (e.target.classList.contains("btn-mas")) {
+    const item = carrito.find((p) => p.id === id);
+    if (!item) return;
+
+    item.cantidad += 1;
+  }
+
+  // - cantidad
+  if (e.target.classList.contains("btn-menos")) {
+    const item = carrito.find((p) => p.id === id);
+    if (!item) return;
+
+    if (item.cantidad > 1) {
+      item.cantidad -= 1;
+    } else {
+      // si llega a 0, lo saco del carrito
+      carrito = carrito.filter((p) => p.id !== id);
+    }
+  }
+
+  // eliminar directamente
+  if (e.target.classList.contains("btn-eliminar")) {
+    carrito = carrito.filter((p) => p.id !== id);
+  }
+
+  guardarCarritoEnLS();
+  renderCarrito();
+});
+
+// -------------------------
+// INICIALIZAR
+// -------------------------
+cargarCarritoDesdeLS();
+renderCarrito();
