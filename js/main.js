@@ -14,6 +14,15 @@ let productos = [];
 // Carrito (se va a sincronizar con localStorage)
 let carrito = [];
 
+// referencias a los filtros del HTML
+const selectCategoria = document.querySelector("#filtro-categoria");
+const inputBusqueda = document.querySelector("#busqueda");
+
+// cuando cambian, filtramos
+selectCategoria.addEventListener("change", filtrarProductos);
+inputBusqueda.addEventListener("input", filtrarProductos);
+
+
 // -------------------------
 // CARRITO + LOCALSTORAGE
 // -------------------------
@@ -94,6 +103,28 @@ function renderizarProductos(lista) {
     contenedorProductos.appendChild(card);
   });
 }
+
+function filtrarProductos() {
+  const categoria = selectCategoria.value;        // "remeras", "pantalones", etc.
+  const texto = inputBusqueda.value.toLowerCase(); // texto de búsqueda
+
+  let listaFiltrada = productos;
+
+  // FILTRO POR CATEGORÍA
+  if (categoria !== "todos") {
+    listaFiltrada = listaFiltrada.filter(p => p.categoria === categoria);
+  }
+
+  // FILTRO POR BÚSQUEDA
+  if (texto.trim() !== "") {
+    listaFiltrada = listaFiltrada.filter(p =>
+      p.nombre.toLowerCase().includes(texto)
+    );
+  }
+
+  renderizarProductos(listaFiltrada);
+}
+
 
 // -------------------------
 // EVENTOS
