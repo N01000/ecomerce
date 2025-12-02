@@ -1,4 +1,4 @@
-[
+
   {
     "id": 1,
     "nombre": "Remera básica blanca",
@@ -17,13 +17,22 @@
     "descripcion": "Jean azul clásico, corte recto.",
     "stock": 15
   },
-  {
+  
+ {
     "id": 3,
-    "nombre": "Zapatillas urbanas negras",
-    "precio": 45000,
-    "categoria": "zapatillas",
-    "imagen": "img/zapatillas/zapatillas-negras.jpg",
-    "descripcion": "Zapatillas urbanas cómodas para todos los días.",
-    "stock": 10
-  }
-]
+    "nombre": "Pantalón jean negro",
+    "precio": 22000,
+    "categoria": "pantalones",
+    "imagen": "img/pantalones/jean-negro.jpg",
+    "descripcion": "Jean negro clásico, corte recto.",
+    "stock": 8
+  },
+   {
+    "id": 4,
+    "nombre": "Remera negra ",
+    "precio": 22000,
+    "categoria": "remeras",
+    "imagen": "img/remeras/remera-negra.jpg",
+    "descripcion": "Remera negra de algodon, corte clasico",
+    "stock": 8
+  },
