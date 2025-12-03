@@ -4,7 +4,15 @@
 const cartItemsContainer = document.querySelector("#cart-items");
 const cartEmptyText = document.querySelector("#cart-empty");
 const cartTotalText = document.querySelector("#cart-total");
+const btnVaciar = document.querySelector("#vaciar-carrito");
 
+btnVaciar.addEventListener("click", () => {
+  if (confirm("¿Seguro que querés vaciar el carrito?")) {
+    carrito = [];
+    guardarCarritoEnLS();
+    renderCarrito();
+  }
+});
 // Carrito local (se sincroniza con localStorage)
 let carrito = [];
 

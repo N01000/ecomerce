@@ -42,7 +42,7 @@ function agregarAlCarrito(idProducto) {
 
   // si no hay stock, salimos
   if (prod.stock <= 0) {
-    alert("No hay stock disponible de este producto.");
+    showToast("No hay stock disponible de este producto.", "error");
     return;
   }
 
@@ -51,7 +51,7 @@ function agregarAlCarrito(idProducto) {
   if (item) {
     // si ya tengo en carrito la misma cantidad que el stock, no dejo sumar más
     if (item.cantidad >= prod.stock) {
-      alert("Producto sin stock.");
+      showToast("Alcanzaste el stock máximo de este producto.", "error");
       return;
     }
     item.cantidad += 1;
@@ -67,6 +67,8 @@ function agregarAlCarrito(idProducto) {
   }
 
   guardarCarritoEnLS();
+  actualizarContadorCarrito();
+  showToast("Producto agregado al carrito 🤘", "success");
   console.log("Carrito actualizado:", carrito);
 }
 
@@ -74,6 +76,13 @@ function agregarAlCarrito(idProducto) {
 // CARGA Y RENDER DE PRODUCTOS
 // -------------------------
 
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+  const badge = document.querySelector("#cart-count");
+  if (badge) badge.textContent = total;
+}
 // Función principal: carga los productos y los muestra
 async function cargarProductos() {
   try {
@@ -171,4 +180,5 @@ if (e.target.classList.contains("btn-detalle")) {
 
 cargarCarritoDesdeLS(); // primero traemos lo que ya había
 cargarProductos();      // y después cargamos los productos
+actualizarContadorCarrito();//actualiza contador de productos en el carrito
 

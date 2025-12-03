@@ -6,11 +6,13 @@
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
+  <div id="toast-container"></div>
   <header>
     <h1>Detalle del producto</h1>
     <nav>
       <a href="index.html">← Volver a la tienda</a>
-      <a href="cart.html">Ver carrito</a>
+      <a href="cart.html">Ver carrito (<span id="cart-count">0</span>)</a>
+      <div id="toast-container"></div>
     </nav>
   </header>
 
@@ -22,6 +24,7 @@
   </main>
 
   <!-- Muy importante: el JS al final -->
+  <script src="./js/toast.js"></script>
   <script src="./js/products.js"></script>
 </body>
 </html>

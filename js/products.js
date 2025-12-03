@@ -66,41 +66,36 @@ async function cargarDetalleProducto() {
 
 // 5) función simple para sumar al carrito usando localStorage
 function agregarAlCarritoDesdeDetalle(producto) {
-  const STORAGE_KEY = "carrito";
+let carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-  let carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  if (producto.stock <= 0) {
+    showToast("No hay stock disponible.", "error");
+    return;
+  }
 
   const existente = carrito.find((item) => item.id === producto.id);
 
   if (existente) {
+    if (existente.cantidad >= producto.stock) {
+      showToast("Ya tenés el máximo disponible en el carrito.", "error");
+      return;
+    }
     existente.cantidad += 1;
   } else {
     carrito.push({
-      ...producto,
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagen,
+      stock: producto.stock,
       cantidad: 1,
     });
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito));
-  alert("Producto agregado al carrito 🛒");
-
-    let cantidad = 1;
-
-  // botones de cantidad
-  document.querySelector("#btn-plus").addEventListener("click", () => {
-    if (cantidad < producto.stock) cantidad++;
-    actualizarCantidad();
-  });
-
-  document.querySelector("#btn-minus").addEventListener("click", () => {
-    if (cantidad > 1) cantidad--;
-    actualizarCantidad();
-  });
-
-  function actualizarCantidad() {
-    document.querySelector("#detalle-cantidad").textContent = cantidad;
+  showToast("Producto agregado al carrito 🛒", "success");
 }
-}
+
 
 
 
