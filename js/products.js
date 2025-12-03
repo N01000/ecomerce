@@ -1,19 +1,28 @@
-// misma ruta que en main.js
 const URL_PRODUCTOS = "./data/productos.json";
+const STORAGE_KEY = "carrito";
 
-// contenedor donde mostramos el detalle
 const contenedorDetalle = document.querySelector("#detalle-producto");
+const badgeCarrito = document.querySelector("#cart-count");
 
-// 1) leer el id que viene en la URL: product.html?id=3
+// Lee el id de la URL: product.html?id=3
 const params = new URLSearchParams(window.location.search);
 const idProducto = Number(params.get("id"));
 
-// por si no vino id en la URL
 if (!idProducto) {
   contenedorDetalle.innerHTML = "<p>Producto no válido.</p>";
 }
 
-// 2) cargar el JSON, buscar el producto y mostrarlo
+// Actualiza el contador del carrito en el header
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+  if (badgeCarrito) {
+    badgeCarrito.textContent = total;
+  }
+}
+
+// Carga el JSON y busca el producto por id
 async function cargarDetalleProducto() {
   try {
     const respuesta = await fetch(URL_PRODUCTOS);
@@ -29,34 +38,7 @@ async function cargarDetalleProducto() {
       return;
     }
 
-    // 3) Render del detalle
-    contenedorDetalle.innerHTML = `
-      <article class="detalle-card">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <div class="detalle-body">
-          <h2>${producto.nombre}</h2>
-          <p class="detalle-price">
-            $${producto.precio.toLocaleString("es-AR")}
-          </p>
-          <p class="detalle-desc">${producto.descripcion}</p>
-          <p class="detalle-stock">Stock disponible: ${producto.stock}</p>
-
-          <button id="btn-agregar-detalle" data-id="${producto.id}">
-            Agregar al carrito
-          </button>
-        </div>
-      </article>
-    `;
-
-    let cantidad = 1;
-
-
-
-    // 4) botón de agregar al carrito desde la vista detalle
-    const btnAgregar = document.querySelector("#btn-agregar-detalle");
-    btnAgregar.addEventListener("click", () =>
-      agregarAlCarritoDesdeDetalle(producto)
-    );
+    renderDetalle(producto);
   } catch (error) {
     console.error(error);
     contenedorDetalle.innerHTML =
@@ -64,9 +46,33 @@ async function cargarDetalleProducto() {
   }
 }
 
-// 5) función simple para sumar al carrito usando localStorage
+// Dibuja el detalle del producto
+function renderDetalle(prod) {
+  contenedorDetalle.innerHTML = `
+    <article class="detalle-card">
+      <img src="${prod.imagen}" alt="${prod.nombre}" class="detalle-img">
+
+      <div class="detalle-body">
+        <h2>${prod.nombre}</h2>
+        <p class="detalle-price">
+          $${prod.precio.toLocaleString("es-AR")}
+        </p>
+        <p><strong>Categoría:</strong> ${prod.categoria}</p>
+        <p><strong>Stock disponible:</strong> ${prod.stock}</p>
+        <p class="detalle-desc">${prod.descripcion}</p>
+
+        <button id="btn-agregar-detalle">Agregar al carrito</button>
+      </div>
+    </article>
+  `;
+
+  const btn = document.querySelector("#btn-agregar-detalle");
+  btn.addEventListener("click", () => agregarAlCarritoDesdeDetalle(prod));
+}
+
+// Agrega el producto al carrito desde el detalle
 function agregarAlCarritoDesdeDetalle(producto) {
-let carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  let carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
   if (producto.stock <= 0) {
     showToast("No hay stock disponible.", "error");
@@ -93,11 +99,10 @@ let carrito = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito));
-  showToast("Producto agregado al carrito 🛒", "success");
+  actualizarContadorCarrito();
+  showToast("Producto agregado al carrito 🤘", "success");
 }
 
-
-
-
-// ejecutar al cargar la página
+// Inicializar
+actualizarContadorCarrito();
 cargarDetalleProducto();
