@@ -54,19 +54,28 @@ function renderCarrito() {
     row.classList.add("cart-row");
 
     row.innerHTML = `
-      <img src="${item.imagen}" alt="${item.nombre}" class="cart-img">
-      <span class="cart-name">${item.nombre}</span>
-      <span class="cart-price">$${item.precio.toLocaleString("es-AR")}</span>
+  <div class="cart-item">
+    <img src="${item.imagen}" alt="${item.nombre}" class="cart-img">
+
+    <div class="cart-detalle">
+      <h3>${item.nombre}</h3>
+      <p class="cart-price">$${item.precio.toLocaleString("es-AR")}</p>
+
       <div class="cart-qty">
         <button class="btn-menos" data-id="${item.id}">-</button>
         <span>${item.cantidad}</span>
         <button class="btn-mas" data-id="${item.id}">+</button>
       </div>
-      <span class="cart-subtotal">
-        $${(item.precio * item.cantidad).toLocaleString("es-AR")}
-      </span>
-      <button class="btn-eliminar" data-id="${item.id}">x</button>
-    `;
+
+      <p class="cart-subtotal">
+        Subtotal: $${(item.precio * item.cantidad).toLocaleString("es-AR")}
+      </p>
+
+      <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
+    </div>
+  </div>
+`;
+
 
     cartItemsContainer.appendChild(row);
   });
