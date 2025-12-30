@@ -20,7 +20,7 @@ body {
 /* ----------------------------
    HEADER
 ---------------------------- */
-header {
+.header-main {
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
@@ -186,7 +186,7 @@ h1 {
     display: grid;
     grid-template-columns: 120px 1fr;
     gap: 20px;
-    background: #2D3142;
+    background: #2d3142;
     border: 1px solid #444;
     border-radius: 12px;
     padding: 15px;
@@ -275,4 +275,82 @@ h1 {
     margin: 0;
     font-size: 2rem;
     font-weight: bold;
+}
+
+
+.btn-vaciar {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-vaciar img {
+    width: 35px;
+    height: 35px;
+    display: block;
+}
+
+
+   /* Detalles del producto */
+
+
+.detalle-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+/* Imagen */
+.detalle-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Columna derecha */
+.detalle-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Título */
+.detalle-body h2 {
+    color: #E63946;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+/* Precio */
+.detalle-price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Descripción */
+.detalle-desc {
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Botón */
+#btn-agregar-detalle {
+    margin-top: auto;
+    background: #E63946;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
 }
