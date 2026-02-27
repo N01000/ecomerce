@@ -1,4 +1,8 @@
 /* ----------------------------
+   IMPORTACIÓN DE FUENTES
+---------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap');
+/* ----------------------------
    RESET BÁSICO
 ---------------------------- */
 * {
@@ -11,7 +15,7 @@
    BODY
 ---------------------------- */
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #1A1D28;
     color: white;
     padding: 20px;
@@ -31,29 +35,48 @@ body {
 /* ----------------------------
    TÍTULO
 ---------------------------- */
-h1 {
+h1, .titulo-tienda {
+    font-family: 'Bebas Neue', sans-serif; /* Fuente impacto para títulos */
     text-align: center;
-    color: #E63946;
-    font-size: 2.5rem;
+    color: #FF2E63; /* Un rosa eléctrico que no falla */
+    font-size: 4rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 /* ----------------------------
    CARRITO (botón + icono)
 ---------------------------- */
 .btn-ver-carrito {
-    background: none;
-    padding: 0;
-    margin-right: 20px;
+    position: relative; /* Base para el posicionamiento del número */
     display: flex;
     align-items: center;
-    cursor: pointer;
-    border: none;
     text-decoration: none;
+}
+#cart-count {
+    display: flex;
+    position: absolute; /* Posicionamiento absoluto dentro del botón */
+
+    /* Ajustá estos valores para que el número caiga justo en el 'hueco' del carrito */
+    top: 2px;
+    right: -2px;
+
+    background: #E63946; /* El rojo que ya vienen usando */
+    color: white;
+    font-size: 0.65rem;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #1A1D28; /* Borde del color del fondo para que resalte */
 }
 
 .imagen_Carrito {
-    width: 24px;
-    opacity: 0.8;
+    width: 40px; /* Lo agrandamos un poco para que el número quepa dentro */
+    opacity: 1;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
@@ -73,20 +96,23 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .filtros select,
 .filtros input {
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #E63946;
-    background: #2D3142;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 46, 99, 0.3);
+    background: #1A1D28;
     color: white;
+    font-family: 'Montserrat', sans-serif;
+    transition: border 0.3s ease;
 }
 
-.filtros input::placeholder {
-    color: #aaa;
+.filtros input:focus {
+    outline: none;
+    border: 1px solid #FF2E63;
 }
 
 /* ----------------------------
@@ -102,7 +128,7 @@ h1 {
     background: #2D3142;
     padding: 15px;
     border-radius: 10px;
-    border: 2px solid #E63946;
+    border: 2px solid #FF2E63;
     text-align: center;
 }
 
@@ -125,8 +151,11 @@ h1 {
     font-weight: bold;
 }
 
+/* ----------------------------
+   BOTONES
+---------------------------- */
 .btn-agregar {
-    background: #E63946;
+    background: #FF2E63;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -239,7 +268,7 @@ h1 {
     color: #E63946;
     font-size: 2rem;
     margin-bottom: 10px;
-}   
+}
 
     /* Header carrito */
 
