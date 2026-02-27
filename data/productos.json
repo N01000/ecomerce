@@ -34,5 +34,14 @@
     "imagen": "img/remeras/remera-negra.jpg",
     "descripcion": "Remera negra de algodon, corte clasico",
     "stock": 8
+  },
+  {
+    "id": 5,
+    "nombre": "Camisa de jean negra",
+    "precio": 30000,
+    "categoria": "camisas",
+    "imagen": "img/camisas/camisa-jean-negra.jpg",
+    "descripcion": "Camisa de jean negra, corte clásico",
+    "stock": 5
   }
 ]
