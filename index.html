@@ -10,17 +10,14 @@
 
   <!-- HEADER: AHORA CONTIENE TODO EN UNA SOLA LÍNEA -->
   <header class="header-main">
-    <!-- Contenedor para filtros y búsqueda (izquierda y centro) -->
-    <div class="header-filtros-busqueda">
-      <!-- FILTROS (Izquierda) -->
-      <div class="filtros">
-        <select id="filtro-categoria">
-          <option value="todos">Todas las categorías</option>
-          <option value="remeras">Remeras</option>
-          <option value="pantalones">Pantalones</option>
-          <option value="zapatillas">Zapatillas</option>
-        </select>
-      </div>
+  <a href="cart.html" class="btn-ver-carrito">
+    <img
+    src="Iconos\carrito-de-compras.svg"
+    class="imagen_Carrito"
+    alt="Carrito"
+  />
+  <span id="cart-count">0</span>
+</a>
 
       <!-- BÚSQUEDA (Centro) -->
       <div class="busqueda">
@@ -38,13 +35,21 @@
         src="Iconos\carrito-de-compras.svg"
         class="imagen_Carrito"
         alt="Carrito"
-      /> 
+      />
       <span id="cart-count">0</span>
     </a>
   </header>
 
-  <!-- TÍTULO PRINCIPAL (AHORA FUERA DEL HEADER, ABAJO) -->
-  <h1>Eccomerce</h1>
+  <main>
+    <!-- Después acá van filtros, búsqueda, etc. -->
+     <section id="filtros" class="filtros">
+  <select id="filtro-categoria">
+    <option value="todos">Todas las categorías</option>
+    <option value="remeras">Remeras</option>
+    <option value="pantalones">Pantalones</option>
+    <option value="zapatillas">Zapatillas</option>
+    <option value="camisas">Camisas</option>
+  </select>
 
   <!-- MAIN: Contenido principal (productos) -->
   <main>
