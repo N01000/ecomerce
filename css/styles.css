@@ -38,7 +38,7 @@ body {
 h1, .titulo-tienda {
     font-family: 'Bebas Neue', sans-serif; /* Fuente impacto para títulos */
     text-align: center;
-    color: #FF2E63; /* Un rosa eléctrico que no falla */
+    color: #FF2E63; 
     font-size: 4rem;
     letter-spacing: 3px;
     margin-bottom: 20px;
@@ -53,6 +53,7 @@ h1, .titulo-tienda {
     display: flex;
     align-items: center;
     text-decoration: none;
+    
 }
 #cart-count {
     display: flex;
@@ -75,9 +76,11 @@ h1, .titulo-tienda {
 }
 
 .imagen_Carrito {
+     color: #FF2E63;
     width: 40px; /* Lo agrandamos un poco para que el número quepa dentro */
     opacity: 1;
     transition: transform 0.25s ease, opacity 0.25s ease;
+   
 }
 
 .btn-ver-carrito:hover .imagen_Carrito {
@@ -296,7 +299,7 @@ h1, .titulo-tienda {
 
 .btn-volver {
     text-decoration: none;
-    color: #333;
+    color: #FF2E63;
     font-size: 1rem;
 }
 
