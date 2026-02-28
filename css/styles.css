@@ -41,90 +41,21 @@ header {
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
-    background: #1A1D28; /* Aseguramos que tenga fondo */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    flex-wrap: wrap; /* Por si la pantalla es muy chica */
-}
-
-/* Eliminamos el main que tenías con margin-top negativo */
-main {
-    display: block; /* Cambiado de flex a block */
-    padding: 20px;
-    margin-top: 0; /* Eliminado el margin-top negativo */
-}
-
-/* Nueva clase para contener filtros y búsqueda dentro del header */
-.header-filtros-busqueda {
-    display: flex;
-    flex: 1; /* Ocupa el espacio disponible */
-    gap: 20px;
-    align-items: center;
-    max-width: 800px; /* Para que no se estire demasiado */
-}
-
-/* ----------------------------
-   FILTROS - AHORA DENTRO DEL HEADER
----------------------------- */
-.filtros {
-    flex: 0 0 auto; /* No se estira, mantiene su tamaño */
-    min-width: 200px; /* Ancho mínimo para el select */
-}
-
-.filtros select {
-    width: 100%;
-    padding: 10px 12px; /* Ajustado para que tenga mejor proporción */
-    border-radius: 6px;
-    border: 1px solid rgba(255, 46, 99, 0.3);
-    background: #1A1D28;
-    color: white;
-    font-family: 'bebas', sans-serif;
-    transition: border 0.3s ease;
-    cursor: pointer;
-}
-
-.filtros select:focus {
-    outline: none;
-    border: 1px solid #FF2E63;
-    box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
-    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 /* ----------------------------
    BÚSQUEDA - AHORA DENTRO DEL HEADER
 ---------------------------- */
-.busqueda {
-    flex: 1; /* Ocupa el espacio restante */
-    max-width: 400px;
-    min-width: 200px;
-}
-
-.busqueda input {
-    width: 100%;
-    padding: 10px 12px;
-    padding-left: 35px; /* Espacio para el icono de búsqueda */
-    border-radius: 6px;
-    border: 1px solid rgba(255, 46, 99, 0.3);
-    background: #1A1D28;
-    color: white;
-    font-family: 'bebas', sans-serif;
-    transition: border 0.3s ease;
-}
-
-.busqueda input:focus {
-    outline: none;
-    border: 1px solid #FF2E63;
-    box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
-    transition: all 0.3s ease;
-}
-
-/* Aseguramos que el input de búsqueda también tenga el icono */
-.busqueda input {
-    background-image: url('C:/Users/Martincho/ecomerce/Iconos/busqueda.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px;
+h1, .titulo-tienda {
+    font-family: 'Bebas Neue', sans-serif; /* Fuente impacto para títulos */
+    text-align: center;
+    color: #FF2E63;
+    font-size: 6rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 /* ----------------------------
@@ -135,7 +66,7 @@ main {
     display: flex;
     align-items: center;
     text-decoration: none;
-    flex: 0 0 auto; /* No se estira */
+
 }
 
 #cart-count {
@@ -143,7 +74,8 @@ main {
     position: absolute;
     top: 2px;
     right: -2px;
-    background: #E63946; 
+
+    background: #E63946;
     color: white;
     font-size: 0.65rem;
     font-weight: bold;
@@ -152,7 +84,7 @@ main {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    border: 1.5px solid #1A1D28; 
+    border: 1.5px solid #1A1D28;
 }
 
 .imagen_Carrito {
@@ -160,6 +92,7 @@ main {
     width: 40px;
     opacity: 1;
     transition: transform 0.25s ease, opacity 0.25s ease;
+
 }
 
 .btn-ver-carrito:hover .imagen_Carrito {
@@ -179,15 +112,27 @@ main {
 /* ----------------------------
    TÍTULO
 ---------------------------- */
-h1, .titulo-tienda {
-    font-family: 'Bebas Neue', sans-serif;
-    text-align: center;
-    color: #FF2E63; 
-    font-size: 6rem;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    margin-top: 20px; /* Añadido margen superior */
-    text-transform: uppercase;
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filtros select,
+.filtros input {
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 46, 99, 0.3);
+    background: #1A1D28;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    transition: border 0.3s ease;
+}
+
+.filtros input:focus {
+    outline: none;
+    border: 1px solid #FF2E63;
 }
 
 /* ----------------------------
@@ -263,27 +208,8 @@ h1, .titulo-tienda {
     header { /* Corregido: antes era .header sin punto */
         padding: 10px 20px;
     }
-}
-
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .header-filtros-busqueda {
-        flex-direction: column;
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .filtros, .busqueda {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .btn-ver-carrito {
-        align-self: flex-end;
+    .header__menu{
+        justify-content: center;
     }
 }
 
