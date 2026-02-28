@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"
-  title="Ecommerce"
->
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Tienda Rockera</title>
@@ -10,36 +8,46 @@
 <body>
   <div id="toast-container"></div>
 
-  <h1>Eccomerce </h1>
-
+  <!-- HEADER: AHORA CONTIENE TODO EN UNA SOLA LÍNEA -->
   <header class="header-main">
-  <a href="cart.html" class="btn-ver-carrito">
-    <img
-    src="Iconos\carrito-de-compras.svg"
-    class="imagen_Carrito"
-    alt="Carrito"
-  /> 
-  <span id="cart-count">0</span>
-</a>
+    <!-- Contenedor para filtros y búsqueda (izquierda y centro) -->
+    <div class="header-filtros-busqueda">
+      <!-- FILTROS (Izquierda) -->
+      <div class="filtros">
+        <select id="filtro-categoria">
+          <option value="todos">Todas las categorías</option>
+          <option value="remeras">Remeras</option>
+          <option value="pantalones">Pantalones</option>
+          <option value="zapatillas">Zapatillas</option>
+        </select>
+      </div>
 
+      <!-- BÚSQUEDA (Centro) -->
+      <div class="busqueda">
+        <input
+          type="text"
+          id="busqueda"
+          placeholder="Buscar producto...  🔎"
+        />
+      </div>
+    </div>
+
+    <!-- CARRITO (Derecha) -->
+    <a href="cart.html" class="btn-ver-carrito">
+      <img
+        src="Iconos\carrito-de-compras.svg"
+        class="imagen_Carrito"
+        alt="Carrito"
+      /> 
+      <span id="cart-count">0</span>
+    </a>
   </header>
 
-  <main>
-    <!-- Después acá van filtros, búsqueda, etc. -->
-     <section id="filtros" class="filtros">
-  <select id="filtro-categoria">
-    <option value="todos">Todas las categorías</option>
-    <option value="remeras">Remeras</option>
-    <option value="pantalones">Pantalones</option>
-    <option value="zapatillas">Zapatillas</option>
-  </select>
+  <!-- TÍTULO PRINCIPAL (AHORA FUERA DEL HEADER, ABAJO) -->
+  <h1>Eccomerce</h1>
 
-  <input
-    type="text"
-    id="busqueda"
-    placeholder="Buscar producto..."
-  />
-</section>
+  <!-- MAIN: Contenido principal (productos) -->
+  <main>
     <section id="productos-container" class="productos-container">
       <!-- Acá JS va a inyectar las tarjetas -->
     </section>

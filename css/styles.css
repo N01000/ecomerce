@@ -1,7 +1,8 @@
 /* ----------------------------
    IMPORTACIÓN DE FUENTES
 ---------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=bebas:wght@400;700;900&display=swap');
+
 /* ----------------------------
    RESET BÁSICO
 ---------------------------- */
@@ -15,54 +16,133 @@
    BODY
 ---------------------------- */
 body {
-    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Bebas Neue', sans-serif;
     background: #1A1D28;
     color: white;
     padding: 20px;
 }
 
+#busqueda {
+    background-image: url('C:/Users/Martincho/ecomerce/Iconos/busqueda.svg'); /* Corregido: URL entre comillas */
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
 /* ----------------------------
-   HEADER
+   HEADER - AHORA CONTIENE TODO (CARRITO, FILTROS Y BÚSQUEDA)
 ---------------------------- */
-.header-main {
+header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Cambiado: ahora separa los elementos */
+    align-items: center;
+    gap: 20px;
     padding: 10px 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
+    background: #1A1D28; /* Aseguramos que tenga fondo */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap; /* Por si la pantalla es muy chica */
+}
+
+/* Eliminamos el main que tenías con margin-top negativo */
+main {
+    display: block; /* Cambiado de flex a block */
+    padding: 20px;
+    margin-top: 0; /* Eliminado el margin-top negativo */
+}
+
+/* Nueva clase para contener filtros y búsqueda dentro del header */
+.header-filtros-busqueda {
+    display: flex;
+    flex: 1; /* Ocupa el espacio disponible */
+    gap: 20px;
+    align-items: center;
+    max-width: 800px; /* Para que no se estire demasiado */
 }
 
 /* ----------------------------
-   TÍTULO
+   FILTROS - AHORA DENTRO DEL HEADER
 ---------------------------- */
-h1, .titulo-tienda {
-    font-family: 'Bebas Neue', sans-serif; /* Fuente impacto para títulos */
-    text-align: center;
-    color: #FF2E63; 
-    font-size: 4rem;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+.filtros {
+    flex: 0 0 auto; /* No se estira, mantiene su tamaño */
+    min-width: 200px; /* Ancho mínimo para el select */
+}
+
+.filtros select {
+    width: 100%;
+    padding: 10px 12px; /* Ajustado para que tenga mejor proporción */
+    border-radius: 6px;
+    border: 1px solid rgba(255, 46, 99, 0.3);
+    background: #1A1D28;
+    color: white;
+    font-family: 'bebas', sans-serif;
+    transition: border 0.3s ease;
+    cursor: pointer;
+}
+
+.filtros select:focus {
+    outline: none;
+    border: 1px solid #FF2E63;
+    box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
+    transition: all 0.3s ease;
 }
 
 /* ----------------------------
-   CARRITO (botón + icono)
+   BÚSQUEDA - AHORA DENTRO DEL HEADER
+---------------------------- */
+.busqueda {
+    flex: 1; /* Ocupa el espacio restante */
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.busqueda input {
+    width: 100%;
+    padding: 10px 12px;
+    padding-left: 35px; /* Espacio para el icono de búsqueda */
+    border-radius: 6px;
+    border: 1px solid rgba(255, 46, 99, 0.3);
+    background: #1A1D28;
+    color: white;
+    font-family: 'bebas', sans-serif;
+    transition: border 0.3s ease;
+}
+
+.busqueda input:focus {
+    outline: none;
+    border: 1px solid #FF2E63;
+    box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Aseguramos que el input de búsqueda también tenga el icono */
+.busqueda input {
+    background-image: url('C:/Users/Martincho/ecomerce/Iconos/busqueda.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+}
+
+/* ----------------------------
+   CARRITO (botón + icono) - AHORA DENTRO DEL HEADER
 ---------------------------- */
 .btn-ver-carrito {
-    position: relative; /* Base para el posicionamiento del número */
+    position: relative;
     display: flex;
     align-items: center;
     text-decoration: none;
-    
+    flex: 0 0 auto; /* No se estira */
 }
+
 #cart-count {
     display: flex;
-    position: absolute; /* Posicionamiento absoluto dentro del botón */
-
-    /* Ajustá estos valores para que el número caiga justo en el 'hueco' del carrito */
+    position: absolute;
     top: 2px;
     right: -2px;
-
     background: #E63946; 
     color: white;
     font-size: 0.65rem;
@@ -76,11 +156,10 @@ h1, .titulo-tienda {
 }
 
 .imagen_Carrito {
-     color: #FF2E63;
-    width: 40px; /* Lo agrandamos un poco para que el número quepa dentro */
+    color: #FF2E63;
+    width: 40px;
     opacity: 1;
     transition: transform 0.25s ease, opacity 0.25s ease;
-   
 }
 
 .btn-ver-carrito:hover .imagen_Carrito {
@@ -92,30 +171,23 @@ h1, .titulo-tienda {
     display: none;
 }
 
+/* Eliminamos las clases antiguas que ya no usamos */
+.main-fila {
+    display: none; /* Ocultamos la estructura antigua */
+}
+
 /* ----------------------------
-   FILTROS
+   TÍTULO
 ---------------------------- */
-.filtros {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-.filtros select,
-.filtros input {
-    padding: 12px 15px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 46, 99, 0.3);
-    background: #1A1D28;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    transition: border 0.3s ease;
-}
-
-.filtros input:focus {
-    outline: none;
-    border: 1px solid #FF2E63;
+h1, .titulo-tienda {
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    color: #FF2E63; 
+    font-size: 6rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    margin-top: 20px; /* Añadido margen superior */
+    text-transform: uppercase;
 }
 
 /* ----------------------------
@@ -125,6 +197,7 @@ h1, .titulo-tienda {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    margin-top: 30px;
 }
 
 .card-producto {
@@ -187,11 +260,30 @@ h1, .titulo-tienda {
    RESPONSIVE
 ---------------------------- */
 @media (max-width: 1200px){
-    .header{
-        padding: 10%;
+    header { /* Corregido: antes era .header sin punto */
+        padding: 10px 20px;
     }
-    .header__menu{
-        justify-content: center;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .header-filtros-busqueda {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .filtros, .busqueda {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .btn-ver-carrito {
+        align-self: flex-end;
     }
 }
 
@@ -203,12 +295,13 @@ h1, .titulo-tienda {
     border-radius: 10px;
     display: block;
 }
+
 /* ============================
    ESTILO PARA LOS PRODUCTOS DEL CARRITO
 ============================ */
 
 .paginaCarrito {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 #cart-items {
@@ -271,20 +364,19 @@ h1, .titulo-tienda {
 }
 
 .tituloCarrito {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'bebas', sans-serif;
     text-align: center;
     color: #E63946;
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
-    /* Header carrito */
-
+/* Header carrito */
 .headerCarrito {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'bebas', sans-serif;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* divide en tres columnas */
+    justify-content: space-between;
     padding: 15px 20px;
     border-bottom: 1px solid #ddd;
 }
@@ -296,11 +388,11 @@ h1, .titulo-tienda {
 }
 
 .header-center {
-    justify-content: center; /* centro exacto */
+    justify-content: center;
 }
 
 .header-right {
-    justify-content: flex-end; /* espacio vacío, balancea el título */
+    justify-content: flex-end;
 }
 
 .btn-volver {
@@ -308,13 +400,6 @@ h1, .titulo-tienda {
     color: #FF2E63;
     font-size: 1rem;
 }
-
-.tituloCarrito {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
 
 .btn-vaciar {
     background: transparent;
@@ -333,10 +418,7 @@ h1, .titulo-tienda {
     display: block;
 }
 
-
-   /* Detalles del producto */
-
-
+/* Detalles del producto */
 .detalle-card {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -363,7 +445,7 @@ h1, .titulo-tienda {
 
 /* Título */
 .detalle-body h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'bebas', sans-serif;
     color: #E63946;
     font-size: 2rem;
     margin-bottom: 5px;
