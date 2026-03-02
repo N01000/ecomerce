@@ -1,6 +1,6 @@
 # 🛒 Proyecto de E-commerce (HTML, CSS y JavaScript)
 
-Este es un proyecto de e-commerce simple desarrollado junto a un amigo:
+Este es un proyecto de e-commerce profesional desarrollado con una estética **Neon-Rock**, enfocado en una experiencia de usuario fluida y reactiva.:
 - Manipulación del DOM
 - Trabajo con JSON
 - Carrito de compras con `localStorage`
@@ -20,4 +20,15 @@ Este es un proyecto de e-commerce simple desarrollado junto a un amigo:
 - Buscador por texto
 - Página de detalle del producto
 
+## 🛠️ Tecnologías Utilizadas
+* **Frontend**: HTML5, CSS3 (Flexbox & Grid), JavaScript Vanilla.
+* **Arquitectura**: Modularización de scripts para fácil mantenimiento.
+* **Control de Versiones**: Git & GitHub (Trabajo colaborativo en rama `main`).
+
 ## 📂 Estructura del proyecto
+* `/css`: Estilos globales y efectos neón.
+* `/js`: Lógica de productos, carrito y notificaciones (Toast).
+* `/Iconos`: Activos visuales del sistema.
+
+---
+Desarrollado por **Juan Ignacio Paracchini** & **Martín Burgos**.
