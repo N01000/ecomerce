@@ -280,7 +280,15 @@ h1, .titulo-tienda {
     font-weight: bold;
     display: block;
     width: 100%;
+    transition: all 0.3s ease;
 }
+
+/* Efecto Neón al pasar el mouse (Hover) */
+.btn-agregar:hover {
+    transform: scale(1.1);
+    background: #e62958;
+}
+
 
 .btn-detalle {
     background: #7209B7;
@@ -293,6 +301,16 @@ h1, .titulo-tienda {
     font-weight: bold;
     display: block;
     width: 100%;
+}
+
+.btn-detalle {
+    /* ... tus estilos actuales ... */
+    transition: all 0.3s ease; /* Fundamental para la suavidad */
+}
+
+.btn-detalle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #7209B7, 0 0 20px #7209B7; /* Neón violeta */
 }
 
 .btn-eliminar {
