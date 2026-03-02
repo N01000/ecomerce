@@ -85,6 +85,29 @@ function renderCarrito() {
 }
 
 // -------------------------
+// FINALIZAR COMPRA (Opción B)
+// -------------------------
+const btnFinalizar = document.querySelector("#finalizar-compra");
+
+btnFinalizar.addEventListener("click", () => {
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío 😓");
+    return;
+  }
+
+  // 1. Feedback al usuario
+  alert("¡Gracias por tu compra! Tu pedido se ha procesado con éxito.");
+
+  // 2. Limpieza de datos
+  carrito = [];
+  guardarCarritoEnLS();
+
+  // 3. Volver a la tienda
+  window.location.href = "index.html";
+});
+
+
+// -------------------------
 // MANEJO DE BOTONES (+, -, x)
 // -------------------------
 cartItemsContainer.addEventListener("click", (e) => {

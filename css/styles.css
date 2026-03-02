@@ -239,6 +239,19 @@ h1, .titulo-tienda {
     margin-top: 30px;
 }
 
+.logo-tienda {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #FF2E63;
+    /* Probablemente acá tengas un font-size muy grande */
+}
+
+.header-main .logo-tienda {
+    font-size: 3rem; /* Tamaño intermedio, ni H1 ni H3 */
+    letter-spacing: 2.5px;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 46, 99, 0.4);
+}
+
 .card-producto {
     background: #2D3142;
     padding: 15px;
@@ -544,7 +557,39 @@ background: #E63946;
     color: white;
 }
 
+.btn-finalizar {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto; /* Lo centramos debajo del total */
+    padding: 15px;
+    background: #FF2E63; /* Tu rosa neón */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-finalizar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #FF2E63, 0 0 30px #FF2E63;
+    text-shadow: 0 0 5px white;
+}
+
+.cart-row {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 46, 99, 0.2);
+    padding-bottom: 15px;
+}
+
+
 /* Detalles del producto */
+
 .detalle-card {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -562,16 +607,17 @@ background: #E63946;
 }
 
 /* Columna derecha */
-.detalle-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 20px;
-    border-left: 1px solid rgba(255,255,255,0.15);
+.detalle-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #FF2E63; /* Cambiado a tu rosa neón */
+    font-size: 3.5rem; /* Un poco más grande para que impacte */
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 46, 99, 0.5); /* Brillo sutil */
+    margin-bottom: 10px;
 }
 
 /* Título */
-.detalle-body h2 {
+.detalle-body h2{
     font-family: 'Bebas Neue', sans-serif;
     color: #E63946;
     font-size: 2rem;
@@ -579,16 +625,19 @@ background: #E63946;
 }
 
 /* Precio */
-.detalle-price {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.detalle-price{
+  font-size: 2.2rem; /* Más jerarquía visual */
+  color:  white;
+  font-family: 'Bebas Neue', sans-serif; /* Consistencia de marca */
+  margin-bottom: 20px;
 }
+
 
 /* Descripción */
 .detalle-desc {
-    opacity: 0.9;
-    line-height: 1.5;
+  font-family: 'sans-serif'; color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  margin-bottom: 30px;
 }
 
 /* Botón */
@@ -601,6 +650,11 @@ background: #E63946;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
+}
+
+#btn-agregar-detalle:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #FF2E63; /* Brillo violeta */
 }
 
 .icon-btn {
