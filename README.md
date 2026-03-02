@@ -27,6 +27,7 @@ Este es un proyecto de e-commerce profesional desarrollado con una estética **N
 
 ## 📂 Estructura del proyecto
 * `/css`: Estilos globales y efectos neón.
+*`/data`: Base de datos de productos en formato JSON.
 * `/js`: Lógica de productos, carrito y notificaciones (Toast).
 * `/Iconos`: Activos visuales del sistema.
 
