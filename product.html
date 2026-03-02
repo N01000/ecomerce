@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -8,13 +8,19 @@
 <body>
   <div id="toast-container"></div>
 
-  <header class="header-detalle">
-    <h1>Detalle del producto</h1>
+<header class="header-main"> <div class="header-top">
     <nav>
-      <a href="index.html">← Volver a la tienda</a>
-      <a href="cart.html">(<span id="cart-count">0</span>)</a>
+      <a href="index.html" class="btn-volver">← VOLVER A LA TIENDA</a>
     </nav>
-  </header>
+
+    <h1 class="logo-tienda">DETALLE DEL PRODUCTO</h1>
+
+    <a href="cart.html" class="btn-ver-carrito">
+      <img src="./Iconos/carrito-de-compras.svg" class="imagen_Carrito" alt="Carrito" />
+      <span id="cart-count">0</span>
+    </a>
+  </div>
+</header>
 
   <main>
     <!-- Acá vamos a inyectar el detalle -->
