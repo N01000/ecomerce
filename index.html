@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eccomerce</title>
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
@@ -12,7 +13,7 @@
 <header class="header-main">
   <div class="header-top">
 <div class="search-wrapper">
-  <select id="filtro-categoria" class="select-oculto">
+  <select id="filtro-categoria" style="display: none;" aria-hidden="true">
     <option value="todos">Todos</option>
     <option value="remeras">Remeras</option>
     <option value="pantalones">Pantalones</option>
@@ -23,6 +24,14 @@
   <button id="btn-categorias" class="icon-btn">
      <img src="Iconos/menu-puntos.svg" alt="Categorías" width="24">
   </button>
+
+  <ul id="menu-categorias-custom" class="menu-neon">
+        <li data-value="todos">Todos</li>
+        <li data-value="remeras">Remeras</li>
+        <li data-value="pantalones">Pantalones</li>
+        <li data-value="zapatillas">Zapatillas</li>
+        <li data-value="camisas">Camisas</li>
+    </ul>
 
   <button id="btn-toggle-search" class="icon-btn">
     <img src="Iconos/busqueda.svg" alt="Buscar" width="24">
@@ -46,8 +55,24 @@
     </section>
   </main>
 
+<div id="overlay" class="overlay"></div>
+
+<nav id="menu-lateral-real" class="side-menu-neon">
+      <div class="menu-header">
+          <span>CATEGORÍAS</span>
+          <button id="btn-close-side">&times;</button>
+      </div>
+      <ul class="menu-links">
+         <li data-value="todos">🏠 Todos</li>
+         <li data-value="remeras">👕 Remeras</li>
+         <li data-value="pantalones">👖 Pantalones</li>
+         <li data-value="zapatillas">👟 Zapatillas</li>
+         <li data-value="camisas">👔 Camisas</li>
+      </ul>
+  </nav>
   <!-- Siempre al final del body -->
-  <script src="./js/toast.js"></script>
-  <script src="./js/main.js"></script>
+<script src="./js/toast.js"></script>
+<script src="./js/main.js"></script>
+
 </body>
 </html>

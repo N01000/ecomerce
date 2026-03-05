@@ -266,46 +266,28 @@ function renderizarProductos(lista) {
 
 }
 
+// Aplica los filtros y vuelve a renderizar
 
-
-function filtrarProductos() {
-
-  const categoria = selectCategoria.value;        // "remeras", "pantalones", etc.
-
-  const texto = inputBusqueda.value.toLowerCase(); // texto de búsqueda
-
-
-
+function filtrarProductos(catManual = null) {
+  // Si catManual tiene algo (clic en menú), usamos eso.
+  // Si es null (teclado), usamos el valor del selectCategoria.
+  const categoria = selectCategoria.value;
+  const texto = inputBusqueda.value.toLowerCase();
   let listaFiltrada = productos;
 
-
-
-  // FILTRO POR CATEGORÍA
-
-  if (categoria !== "todos") {
-
+  // 1. FILTRO POR CATEGORÍA
+  if (categoria && categoria !== "todos") {
     listaFiltrada = listaFiltrada.filter(p => p.categoria === categoria);
-
   }
 
-
-
-  // FILTRO POR BÚSQUEDA
-
+  // 2. FILTRO POR BÚSQUEDA
   if (texto.trim() !== "") {
-
     listaFiltrada = listaFiltrada.filter(p =>
-
       p.nombre.toLowerCase().includes(texto)
-
     );
-
   }
-
-
 
   renderizarProductos(listaFiltrada);
-
 }
 
 
@@ -351,18 +333,11 @@ if (e.target.classList.contains("btn-detalle")) {
 });
 
 
-btnCats.addEventListener('click', () => {
-    try {
-        // Le damos el foco primero
-        selectCats.focus();
-        // Intentamos abrir el selector nativo
-        selectCats.showPicker();
-    } catch (error) {
-        // Plan B: Si showPicker falla, forzamos un click
-        console.warn("showPicker no soportado, intentando click manual");
-        selectCats.click();
-    }
-});
+// -------------------------
+
+// Funcion de la barra de búsqueda (toggle)
+
+// -------------------------
 
 
 btnSearch.addEventListener('click', () => {
@@ -377,19 +352,57 @@ btnSearch.addEventListener('click', () => {
 
 });
 
+// 1. Selección de elementos (Asegurate que estos IDs existan en tu HTML)
+const botonMenu = document.getElementById('btn-categorias');
+const menuLateral = document.getElementById('menu-lateral-real');
+const elOverlay = document.getElementById('overlay');
+const botonCerrar = document.getElementById('btn-close-side');
 
+// 2. Lógica de apertura
+if (botonMenu && menuLateral && elOverlay) {
+    botonMenu.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-btnCats.addEventListener('click', () => {
+        console.log("Ingeniería: Abriendo menú...");
+        menuLateral.classList.add('active');
+        elOverlay.classList.add('active');
+    });
 
-    // Esto abre el selector nativo en la mayoría de los navegadores
+    // 3. Lógica de cierre
+    const cerrarMenu = () => {
+        menuLateral.classList.remove('active');
+        elOverlay.classList.remove('active');
+    };
 
-    selectCats.showPicker();
+    if (botonCerrar) botonCerrar.onclick = cerrarMenu;
+    elOverlay.onclick = cerrarMenu;
+} else {
+    // Si ves este error en la consola (F12), es porque un ID está mal escrito
+    console.error("Error de IDs: Revisá que el nav sea 'menu-lateral-real' y el botón 'btn-categorias'");
+}
 
+// 1. Buscamos todos los ítems de la lista en el menú lateral real
+const itemsCategorias = document.querySelectorAll('#menu-lateral-real .menu-links li');
+
+// --- EN EL EVENTO DE CLIC DEL MENÚ LATERAL ---
+itemsCategorias.forEach(item => {
+    item.addEventListener('click', () => {
+        const valor = item.getAttribute('data-value');
+
+        // 1. Forzamos el valor en el select oculto
+        selectCategoria.value = valor;
+
+        console.log("Ingeniería: Categoría seleccionada ->", valor);
+
+        // 2. Llamamos al filtro
+        filtrarProductos();
+
+        // 3. Cerramos el menú
+        document.getElementById('menu-lateral-real').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+    });
 });
-
-
-
-
 
 // -------------------------
 
