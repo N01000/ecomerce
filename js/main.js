@@ -415,6 +415,10 @@ if (botonLupa && campoBusqueda) {
         }
     };
 }
+
+
+
+
 // -------------------------
 
 // INICIALIZACIÓN

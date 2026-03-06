@@ -43,6 +43,11 @@ body {
     padding: 5px 10px;
 }
 
+/* ----------------------------
+   Menu lateral - AHORA CON OVERLAY Y ANIMACIONES
+---------------------------- */
+
+
 /* Estado inicial oculto */
 .overlay {
     position: fixed;
@@ -132,7 +137,32 @@ body {
 .menu-links li:nth-child(4) { animation-delay: 0.4s; }
 .menu-links li:nth-child(5) { animation-delay: 0.5s; }
 
+/* Estilo para el botón de cerrar del menú lateral */
 
+/* Estilo para la X negra sobre fondo flúo */
+#btn-close-side {
+    all: unset;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 35px !important;
+    height: 35px !important;
+
+    /* El botón ahora es negro pero la X será la protagonista */
+    background-color: transparent !important; /* Probá con transparent o #000 */
+    color: #000000 !important;           /* X NEGRA SÓLIDA */
+
+    font-family: 'Arial', sans-serif !important;
+    font-size: 28px !important; /* Un poco más grande para que se note */
+    font-weight: 900 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+#btn-close-side:hover {
+    transform: rotate(90deg) scale(1.2);
+    opacity: 0.7; /* Un pequeño efecto visual al tocarlo */
+}
 
 /* ----------------------------
    HEADER - AHORA CONTIENE TODO (CARRITO, FILTROS Y BÚSQUEDA)
@@ -772,7 +802,7 @@ display: flex;
 color: #FF2E63;
     text-decoration: none;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 3.5rem;
     transition: color 0.3s;
 }
 
@@ -1059,23 +1089,4 @@ background: #E63946;
   0% { transform: scale(1); }
   50% { transform: scale(0.95); background: #FF2E63; color: white; }
   100% { transform: scale(1); }
-}
-
-.btn-finalizar {
-  background: #FF2E63;
-  color: white;
-  border: none;
-  padding: 15px 40px;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid #FF2E63;
-}
-
-.btn-finalizar:hover {
-  background: transparent;
-  color: #FF2E63;
-  transform: scale(1.05);
 }
