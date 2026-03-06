@@ -424,6 +424,8 @@ h1, .titulo-tienda {
     border-radius: 10px;
     border: 2px solid #FF2E63;
     text-align: center;
+     transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .card-producto img {
@@ -432,6 +434,11 @@ h1, .titulo-tienda {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.card-producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 46, 99, 0.3);
 }
 
 .card-producto h3 {
@@ -443,6 +450,11 @@ h1, .titulo-tienda {
     margin: 5px 0;
     font-size: 1.2rem;
     font-weight: bold;
+}
+
+.card-producto .btn-agregar {
+  position: relative;
+  z-index: 2;
 }
 
 /* ----------------------------

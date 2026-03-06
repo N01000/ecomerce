@@ -225,40 +225,30 @@ function renderizarProductos(lista) {
     const sinStock = prod.stock <= 0;
 
 
+card.innerHTML = `
+  <img src="${prod.imagen}" alt="${prod.nombre}">
+  <div class="card-body">
+    <h3>${prod.nombre}</h3>
+    <p class="card-price">$${prod.precio.toLocaleString("es-AR")}</p>
+    <p class="card-stock">
+      ${sinStock ? "Sin stock" : "Stock: " + prod.stock}
+    </p>
+    <button class="btn-agregar" data-id="${prod.id}" ${sinStock ? "disabled" : ""}>
+      ${sinStock ? "No disponible" : "Agregar al carrito"}
+    </button>
+  </div>
+`;
 
-    card.innerHTML = `
-
-      <img src="${prod.imagen}" alt="${prod.nombre}">
-
-      <div class="card-body">
-
-        <h3>${prod.nombre}</h3>
-
-        <p class="card-price">$${prod.precio.toLocaleString("es-AR")}</p>
-
-        <p class="card-stock">
-
-          ${sinStock ? "Sin stock" : "Stock: " + prod.stock}
-
-        </p>
-
-        <button class="btn-agregar" data-id="${prod.id}" ${sinStock ? "disabled" : ""}>
-
-          ${sinStock ? "No disponible" : "Agregar al carrito"}
-
-        </button>
-
-        <button class="btn-detalle" data-id="${prod.id}">
-
-          Ver detalle
-
-        </button>
-
-      </div>
-
-    `;
-
-
+// Hacer que la tarjeta sea cliqueable
+card.style.cursor = 'pointer';
+card.addEventListener('click', function(e) {
+  // Si el click fue en el botón "Agregar", no redirigimos
+  if (e.target.classList.contains('btn-agregar')) {
+    return;
+  }
+  // Redirigir al detalle del producto
+  window.location.href = `product.html?id=${prod.id}`;
+});
 
     contenedorProductos.appendChild(card);
 
