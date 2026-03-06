@@ -339,19 +339,6 @@ if (e.target.classList.contains("btn-detalle")) {
 
 // -------------------------
 
-
-btnSearch.addEventListener('click', () => {
-
-    inputBusqueda.classList.toggle('active');
-
-    if (inputBusqueda.classList.contains('active')) {
-
-        inputBusqueda.focus(); // Para que el usuario pueda escribir directo
-
-    }
-
-});
-
 // 1. Selección de elementos (Asegurate que estos IDs existan en tu HTML)
 const botonMenu = document.getElementById('btn-categorias');
 const menuLateral = document.getElementById('menu-lateral-real');
@@ -404,6 +391,30 @@ itemsCategorias.forEach(item => {
     });
 });
 
+
+// --- LÓGICA DE BÚSQUEDA UNIFICADA (FIX POST-MERGE) ---
+const logoPrincipal = document.querySelector('.logo-tienda');
+const botonLupa = document.getElementById('btn-toggle-search');
+const campoBusqueda = document.getElementById('busqueda');
+
+if (botonLupa && campoBusqueda) {
+    botonLupa.onclick = (e) => {
+        e.preventDefault(); // Evitamos cualquier comportamiento extra
+
+        // 1. Toggle del buscador (clase active para mostrar línea rosa)
+        campoBusqueda.classList.toggle('active');
+
+        // 2. Toggle del logo (clase hidden-mobile para desaparecer en móvil)
+        if (logoPrincipal) {
+            logoPrincipal.classList.toggle('hidden-mobile');
+        }
+
+        // 3. Foco automático para empezar a escribir
+        if (campoBusqueda.classList.contains('active')) {
+            campoBusqueda.focus();
+        }
+    };
+}
 // -------------------------
 
 // INICIALIZACIÓN

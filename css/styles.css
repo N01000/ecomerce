@@ -166,88 +166,136 @@ h1, .titulo-tienda {
 }
 
 /* Fila de abajo: Filtros y Buscador */
+
 .header-filtros-busqueda {
+
     display: flex;
+
     justify-content: center;
+
     gap: 15px;
+
     width: 100%;
+
     margin-top: 10px;
+
 }
+
 /* ----------------------------
+
    FILTROS - AHORA DENTRO DEL HEADER
+
 ---------------------------- */
+
 .filtros {
+
     flex: 0 0 auto; /* No se estira, mantiene su tamaño */
+
     min-width: 200px; /* Ancho mínimo para el select */
+
 }
+
+
 
 .filtros select {
+
     width: 100%;
+
     padding: 10px 12px; /* Ajustado para que tenga mejor proporción */
+
     border-radius: 6px;
+
     border: 1px solid rgba(255, 46, 99, 0.3);
+
     background: #1A1D28;
+
     color: white;
+
     font-family: 'bebas', sans-serif;
+
     transition: border 0.3s ease;
+
     cursor: pointer;
+
 }
+
+
 
 .filtros select:focus {
+
     outline: none;
+
     border: 1px solid #FF2E63;
+
     box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
+
     transition: all 0.3s ease;
+
 }
+
+
 
 /* Esto afecta a las opciones dentro del desplegable */
+
 #filtro-categoria option {
+
     background-color: #1A1D28; /* El mismo fondo que tu body */
+
     color: white;
+
     padding: 10px;
+
     font-family: 'Bebas Neue', sans-serif;
+
 }
 
-#filtro-categoria {
-    position: absolute; /* Se posiciona respecto al search-wrapper */
-    top: 30px;         /* Lo baja para que no tape los iconos */
-    left: 0px;           /* Lo alinea a la izquierda, bajo las rayitas */
-    width: 120px;      /* Le damos un ancho para que sea fácil de ver */
-    opacity: 0;        /* Sigue siendo invisible al ojo, pero no para el navegador */
-    pointer-events: none;
-    z-index: -1;       /* Lo manda atrás de los iconos mientras no se usa */
-}
+
+
 
 
 /* ----------------------------
-   BÚSQUEDA - AHORA DENTRO DEL HEADER
+   BÚSQUEDA - OPTIMIZADA
 ---------------------------- */
-.busqueda {
-    flex: 1; /* Ocupa el espacio restante */
-    max-width: 400px;
-    min-width: 200px;
-}
-
-.busqueda input {
-    width: 100%;
-    padding: 10px 12px;
-    padding-left: 35px; /* Espacio para el icono de búsqueda */
-    border-radius:none;
-    border: none rgba(255, 46, 99, 0.3);
-    background: #1A1D28;
-    color: #FF2E63;
-    font-family: 'bebas', sans-serif;
-    transition: border 0.3s ease;
-}
-
-.busqueda input:focus {
+#busqueda {
+    background: transparent;
+    border: none;
     outline: none;
-    border: 1px solid #FF2E63;
-    box-shadow: 0 0 10px rgba(255, 46, 99, 0.4);
-    transition: all 0.3s ease;
+    color: white;
+    width: 0;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Bebas Neue', sans-serif;
+    border-bottom: 2px solid transparent; /* Base invisible */
 }
 
-/* Aseguramos que el input de búsqueda también tenga el icono */
+/* Estado Único Activo (Escritorio y Base) */
+#busqueda.active {
+    width: 220px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-bottom: 2px solid #FF2E63 !important; /* TU LÍNEA ROSA */
+    padding: 5px 10px;
+    margin-left: 10px;
+    box-shadow: 0 4px 6px -6px rgba(255, 46, 99, 0.8);
+}
+
+/* Logo por defecto */
+.logo-tienda {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #FF2E63;
+    font-size: 3rem;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transición suave y elegante */
+    transform: translateY(0);
+}
+
+/* LA REGLA MAESTRA: Esta debe ir sola y sin duplicados */
+.logo-tienda.hidden-mobile {
+    display: none ; /* Desaparece del mapa */
+}
+
+
 
 
 /* ----------------------------
@@ -434,152 +482,138 @@ h1, .titulo-tienda {
 /* ----------------------------
    RESPONSIVE
 ---------------------------- */
-@media (max-width: 768px) {
+/* --- SOLO PARA MÓVILES --- */
 
-    header.header-main {
-        padding: 10px 5px; /* Bajamos de 20px a 5px para ganar espacio */
+/* --- LÓGICA ESCRITORIO (Se mantiene limpio) --- */
+@media screen and (min-width: 650px) {
+    .logo-tienda.hidden-mobile {
+        display: block !important; /* En PC el logo nunca se oculta */
     }
-    /* 1. Estructura del Header */
-    .header-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 60px;
-        padding: 0px;
-    }
-
-    /* Estado inicial: oculto o chiquito */
-    #busqueda.input-expandable {
-        width: 0;
-        opacity: 0;
-        transition: all 0.3s ease; /* Esta es la clave del despliegue */
-        overflow: hidden;
-        border: none;
-        background: transparent;
-    }
-
-    /* Estado activo: cuando el JS hace lo suyo */
-    #busqueda.input-expandable.active {
-        width: 180px; /* Ajustá este ancho para que llegue casi hasta el carrito */
-        background-color: transparent; /* Mantenemos el fondo oscuro de la tienda */
-        border: none;
-        border-bottom: 2px solid #FF2E63; /* Esa línea neón que ya tenés */
-        color: white;
-        padding: 5px 10px;
-        margin-left: 10px;
-        outline: none;
-        opacity: 1; /* Aseguramos visibilidad */
-    }
-
-    .menu-neon {
-        display: none; /* Se activa con JS */
-        position: absolute;
-        top: 60px;
-        left: 10px;
-        background-color: rgba(26, 26, 26, 0.95); /* Fondo oscuro neón */
-        border: 2px solid #FF2E63; /* Tu rosa neón */
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(255, 46, 99, 0.5);
-        list-style: none;
-        padding: 0;
-        z-index: 100;
-        min-width: 160px;
-    }
-
-    .menu-neon li {
-        padding: 15px 20px; /* Tamaño ideal para el pulgar */
-        color: white;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-family: 'RocknRoll One', sans-serif;
-        border-bottom: 1px solid #333;
-    }
-
-    .menu-neon li:last-child { border-bottom: none; }
-
-    .menu-neon li:hover {
-        background-color: #FF2E63;
-        color: black;
-    }
-
-    #select-categorias {
-        position: absolute; /* Para que flote sobre los productos */
-        top: 70px; /* Ajustalo según la altura de tu header */
-        left: 10px;
-        width: 200px;
-        background-color: #1a1a1a;
-        border: 2px solid #FF2E63; /* Tu rosa neón */
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
-        z-index: 100; /* Para que tape las cards de productos */
-    }
-
-    #select-categorias option {
-        padding: 15px; /* Tamaño ideal para el pulgar */
-        font-size: 1.1rem;
-    }
-
-    /* 2. Logo: Usamos el tamaño intermedio que elegiste */
-    .logo-tienda {
-        transition: opacity 0.3s, easevisibility 0.3s;;
-        font-size: 1.4rem;
-        flex: 1;
-        text-align: center;
-    }
-
-    /* Efecto al pasar el mouse o seleccionar */
-    #select-categorias option:hover {
-    background-color: #FF2E63;
-    color: black;
 }
 
-    /* 3. Iconos y Buscador */
-    .search-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-left: 0;
-        padding-left: 0;
+@media (max-width: 650px) {
+
+       header.header-main {
+
+        padding: 10px 5px; /* Bajamos de 20px a 5px para ganar espacio */
+
     }
+
+    /* 1. Estructura del Header */
+
+    .header-top {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        min-height: 60px;
+
+        padding: 0px;
+
+    }
+
+    .logo-tienda {
+        transition: opacity 0.4s ease, transform 0.4s ease, width 0.4s ease 0.1s, margin 0.4s ease;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+/* 1. El logo se va y libera el espacio */
+
+  .logo-tienda.hidden-mobile {
+
+
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-10px); /* Efecto de desplazamiento hacia arriba */
+        display: block;
+        width: 0 !important; /* CLAVE: Para que el buscador pueda expandirse */
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute; /* Lo sacamos del flujo para que no empuje nada */
+
+    }
+
+    .search-wrapper {
+
+        flex: 1; /* Toma el lugar del logo */
+        display: flex;
+        justify-content: flex-start; /* CAMBIO CLAVE: Alinea a la izquierda */
+        align-items: center;
+        transition: all 0.5s ease
+    }
+
 
     #busqueda.active {
-        background-color: #1a1a1a; /* El fondo oscuro de tu tienda */
-        z-index: 20;
-        width: 180px; /* Ajustalo según el ancho de tu celu */
+
+        width: 100% !important; /* Se estira en el centro */
+
+        max-width: 200px;
+
+        text-align: flex-start; /* Centra el texto "Buscar..." */
+
+        margin: 0 0;
+
     }
 
-    .header-icons img {
-        width: 24px;
-        height: auto;
-        flex-basis: 20%;
-    }
+
 
     /* 4. El Carrito: lo mantenemos alineado con los otros iconos */
+
     .btn-ver-carrito {
+
         display: flex;
+
         justify-content: flex-end;
+
         flex-basis: 20%;
+
     }
+
+
 
     /* 5. Grillas de Productos y Detalle */
+
     .contenedor-productos, .detalle-card {
+
         grid-template-columns: 1fr; /* Una sola columna para que sea legible */
+
         gap: 20px;
+
         padding: 15px;
+
     }
+
+
 
     /* 6. Botones de las cards */
+
     .btn-agregar, .btn-detalle {
+
         width: 100%; /* Que ocupen todo el ancho en móvil */
+
         padding: 12px;
+
         font-size: 0.9rem;
+
         margin-bottom: 8px;
+
     }
 
+
+
     /* 7. Texto general */
+
     body { font-size: 16px; }
+
     h2 { font-size: 1.8rem; }
+
 }
+
 
 /* Normalizar todas las imágenes del carrito */
 #cart-items img {
@@ -1011,11 +1045,11 @@ background: #E63946;
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     transform: translateY(50px);
     opacity: 0;
   }
-  to { 
+  to {
     transform: translateY(0);
     opacity: 1;
   }
