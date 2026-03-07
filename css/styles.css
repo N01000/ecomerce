@@ -452,11 +452,6 @@ h1, .titulo-tienda {
     font-weight: bold;
 }
 
-.card-producto .btn-agregar {
-  position: relative;
-  z-index: 2;
-}
-
 /* ----------------------------
    BOTONES
 ---------------------------- */

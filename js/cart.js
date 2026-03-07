@@ -132,7 +132,7 @@ function mostrarMetodosPago() {
         <div class="pago-opcion" data-metodo="debito">
           <span class="pago-emoji">💳</span>
           <span class="pago-nombre">Tarjeta de Débito</span>
-          <span class="pago-estado">(Visa, Mastercard, Cabal, etc)</span>
+          <span class="pago-estado">(Visa, Mastercard, Cabal)</span>
         </div>
         
         <!-- CRÉDITO -->
