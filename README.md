@@ -32,4 +32,4 @@ Este es un proyecto de e-commerce profesional desarrollado con una estética **N
 * `/Iconos`: Activos visuales del sistema.
 
 ---
-Desarrollado por **Juan Ignacio Paracchini** & **Martín Burgos**.
+Desarrollado por **Juan Ignacio Paracchini** & **Martín Burgos** .

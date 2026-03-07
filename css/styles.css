@@ -404,9 +404,10 @@ h1, .titulo-tienda {
 }
 
 .logo-tienda {
-    font-family: 'Bebas Neue', sans-serif;
-    color: #FF2E63;
-    /* Probablemente acá tengas un font-size muy grande */
+font-size: clamp(2.5rem, 8vw, 2.5rem) !important;
+    white-space: nowrap; /* Evita que el texto se parta en dos renglones /
+    text-align: center;
+    flex: 1; / Hace que ocupe el espacio central de forma equilibrada */
 }
 
 
